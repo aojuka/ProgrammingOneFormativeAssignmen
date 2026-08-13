@@ -1,52 +1,71 @@
-class Student_information:
-    def __init__(self):
-        self.name=input("Enter your name: ") # 
-        if self.name.isalpha():
-                print( f"Welcome {self.name} This is  your student tracker") 
-        elif self.name.isnumeric():
+# One small code for  All one giant leep for mankind
+class Student_information:                               #parent class to bare the student information,id ,and cohorty name..be sure to create a display dashboard
+    def __init__(self):                                  #My user have the sol chance to input there actial name as the class instancitilizes
+        self.__name=input("Enter your name: ")             # Apply Encampsulation to prevent accidental modification of student name once set 
+        if self.__name.isalpha():                          #Just as simple error handling to mosdifiy before assignment deadline
+                print( f"Welcome {self.__name} This is  your student tracker") 
+        elif self.__name.isnumeric(): 
             print("Invalid input please try again")
-        self.cohort=input(f"{self.name}, Now Please enter your current cohort ")
-        
-class Assignments(Student_information):     
-    def Module_colecttor():         
+        self.id=int(input(f" Nice {self.__name}, Please now enter your student ID: "))
+        self.cohort=input(f"{self.__name}, Now Please enter your current cohort ")
+    # Keep Dreaming big  Allan  
+    def gett_name(self):
+         return self.__name
+
+class Assignments():     
+    def __init__(self):
          attemps= 0
-         modules={}
-         while attemps <= 3:
-             Module_name=input("Enter Module name and Grades:- Math,80 ")
+         modules_dict={"Modules":["subject","title","score" ,"Max_score","assignment type"]}
+         while attemps <= 3: #Consider While true for flexibility
+             Module_name=input("Enter Module name and max_score:- Math,80 ")
              attemps +=1
              Module_name_list=Module_name.split(",")
-             modules[Module_name_list[0]]=int(Module_name_list[1])
-             return modules
-     
+             modules_dict[Module_name_list[0]]=int(Module_name_list[1]) #Adds the module name and maximum score in the dictionary
+         self.modules_dict= modules_dict
+    def show_modules(self):
+        print("═════════════════════════════════════")
+        print("            Max_score              ")
+        print("══════════════════════════════════════")
+        for module,max_score  in self.modules_dict.items():
+            if max_score >= 70:
+                remarks= "Exellent"
+            elif max_score >= 50:
+                remarks= "ABOVE AVERAGE"
+            else:
+                remarks= "POOR"
+            print(f"  {module}   {max_score}%  {remarks}")
+
+        print("══════════════════════════════════════") 
 
 
-class List_Assignment(Student_information):
+
+class List_Assignment(Assignments):
      pass
-
-
-
-class view1(Student_information,Assignments):
-     def view(self):
+class view_student_n_dashboard(Assignments):
+     def view_Menu(self):
         info_dictionary=dict(
              welcome    = "╔══════════════════════════════════════╗",
         dashboard1 = f"║     GRADE TRACKER — {self.name}║",
+        dashboard10 = f"║     GRADE TRACKER — {self.id}║",
         dashboard2 = "╠══════════════════════════════════════╣",
-        dashboard3 = "║   1.   Add Homework                ║",
-        dashboard4 = "║   2.   Add Exam                    ║",
-        dashboard5 = "║   3.   List Assignments            ║",
-        dashboard6 = "║   4.   Filter Assignments          ║",
-        dashboard7 = "║   5.   Show Summary                ║",
-        dashboard8 = "║   0.   Exit                        ║",
+        dashboard3 = "║   1.   Add Homework                 ║",
+        dashboard4 = "║   2.   Add Exam                     ║",
+        dashboard5 = "║   3.   List Assignments             ║",
+        dashboard6 = "║   4.   Filter Assignments           ║",
+        dashboard7 = "║   5.   Show Summary                 ║",
+        dashboard8 = "║   0.   Exit                         ║",
         dashboard9 = "╚══════════════════════════════════════╝"
         )
         for i in info_dictionary.values():
             print(i)  
-     
-     
-class Filter:
+     def user_options(self):
+          pass    
+class Grade_tracker:
      pass
 
-student1=view1()
-student1.view()
+student1=view_student_n_dashboard()
+
+student1.Module_colecttor()
+
    
         
