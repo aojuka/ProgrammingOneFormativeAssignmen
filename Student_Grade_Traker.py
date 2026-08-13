@@ -12,19 +12,22 @@ class Student_information:                               #parent class to bare t
     def gett_name(self):
          return self.__name
 
-class Assignments():     
+class Assignments():     #subjrct ,title ,score, max score,due date, assignment type
     def __init__(self):
          attemps= 0
-         modules_dict={"Modules":["subject","title","score" ,"Max_score","assignment type"]}
+         modules_dict={}
          while attemps <= 3: #Consider While true for flexibility
-             Module_name=input("Enter Module name and max_score:- Math,80 ")
+             Module_name=input("Enter Module Name and Maximum score:- Math,80 ")
              attemps +=1
              Module_name_list=Module_name.split(",")
              modules_dict[Module_name_list[0]]=int(Module_name_list[1]) #Adds the module name and maximum score in the dictionary
          self.modules_dict= modules_dict
+         self.titles=input("Now enter title of the module:  ")
+         self.assingment_type=input("Now enter assignment type:  ")
+         self.due_date=input("Now enter Due Date of the assignment:  ")
     def show_modules(self):
         print("═════════════════════════════════════")
-        print("            Max_score              ")
+        print(f"                          ")
         print("══════════════════════════════════════")
         for module,max_score  in self.modules_dict.items():
             if max_score >= 70:
