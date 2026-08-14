@@ -1,30 +1,32 @@
 class Assignment:
-    def __int__(self):
+    def __init__(self):
+
         modules_dict={}
         
         while True:
             
-            try:
-                module_input= input(
-                    f"{"Name"} please enter Module, Subject, Score, Max Score, Due Date, Type\n"
-                    "Example: Math,Mathematics,75,80,2026-08-20,Exam\n"
-                    "or type 'done' to finish: "
-                )
-            except:
-                print("Opps you did not follow my instructions\n" \
-                "Please ensure data was separated by a ',' only "
-                "Example: Math,Mathematics,75,80,2026-08-20,Exam\n")
+            module_input= input(
+                f"{"Name"} please enter Module, Subject, Score, Max Score, Due Date, Type\n"
+                "Example: Math,Mathematics,75,80,2026-08-20,Exam\n"
+                "or type 'done' to finish: "
+            )
+        
             if module_input.lower() == "done":
                 break
 
             module_List= module_input.split(",")
-
-            module_name= module_List[0]
-            Subject_title= module_List[1]
-            score= int(module_List[2])
-            max_score= int(module_List[3])
-            due_date= module_List[4]
-            assignment_type= module_List[5]
+            try:
+                module_name= module_List[0]
+                Subject_title= module_List[1]
+                score= int(module_List[2])
+                max_score= int(module_List[3])
+                due_date= module_List[4]
+                assignment_type= module_List[5]
+            except:
+                print("Opps you did not follow my instructions\n" \
+                "Please ensure data was separated by a ',' only "
+                "Example: Math,Mathematics,75,80,2026-08-20,Exam\n")
+                continue
 
             #Data cleaning and validation of User Input
             pass
@@ -43,9 +45,9 @@ class Assignment:
 
     def show_modules(self):
 
-        print("==========================================================================")
+        print("=" * 80)
         print("Module     Subject        Score    Max    Due Date      Type   Remarks")
-        print("==========================================================================")
+        print("=" * 80)
 
         for module, values in self.modules_dict.items() :
 
@@ -66,15 +68,15 @@ class Assignment:
                 pass
                 #TO ADD NOTESSS
             print(
-                f"{module:<10} " # :> right aligns the results with the available space
-                f"{subject:<12} "
+                f"{module.upper():<10} " # :> right aligns the results with the available space
+                f"{subject.capitalize():<12} "
                 f"{score:<8} "
                 f"{max_score:<6} "
                 f"{due_date:<13} "
                 f"{ass_type:<8} "
                 f"{remarks}"
             )
-        print("==========================================================================")
+        print("=" * 80)
             
 
 
