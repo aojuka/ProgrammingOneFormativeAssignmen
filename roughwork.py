@@ -1,28 +1,95 @@
-class Assignments():     #subjrct ,title ,score, max score,due date, assignment type
-    def __init__(self):
-         attemps= 0
-         modules_dict={}
-         Module_name[""]
-         while attemps <= 3: #Consider While true for flexibility
-             Module_name=input("Enter Module NAME,TITLE,SCORE,Max score,due date,assignment type:- Math,80 ")
-             attemps +=1
-             Module_name_list=Module_name.split(",")
-             modules_dict[Module_name_list[0]]=int(Module_name_list[1]) #Adds the module name and maximum score in the dictionary
-         self.modules_dict= modules_dict
-    def show_modules(self):
-        print("═════════════════════════════════════")
-        print(f"                          ")
-        print("══════════════════════════════════════")
-        for module,max_score  in self.modules_dict.items():
-            if max_score >= 70:
-                remarks= "Exellent"
-            elif max_score >= 50:
-                remarks= "ABOVE AVERAGE"
-            else:
-                remarks= "POOR"
-            print(f"  {module}   {max_score}%  {remarks}")
+class Assignment:
+    def __int__(self):
+        modules_dict={}
+        
+        while True:
+            
+            try:
+                module_input= input(
+                    f"{"Name"} please enter Module, Subject, Score, Max Score, Due Date, Type\n"
+                    "Example: Math,Mathematics,75,80,2026-08-20,Exam\n"
+                    "or type 'done' to finish: "
+                )
+            except:
+                print("Opps you did not follow my instructions\n" \
+                "Please ensure data was separated by a ',' only "
+                "Example: Math,Mathematics,75,80,2026-08-20,Exam\n")
+            if module_input.lower() == "done":
+                break
 
-        print("══════════════════════════════════════") 
+            module_List= module_input.split(",")
+
+            module_name= module_List[0]
+            Subject_title= module_List[1]
+            score= int(module_List[2])
+            max_score= int(module_List[3])
+            due_date= module_List[4]
+            assignment_type= module_List[5]
+
+            #Data cleaning and validation of User Input
+            pass
+            pass 
+            pass
+            pass
+
+            modules_dict[module_name]=[
+                Subject_title,
+                score,
+                max_score,
+                due_date,
+                assignment_type
+            ]
+        self.modules_dict= modules_dict
+
+    def show_modules(self):
+
+        print("==========================================================================")
+        print("Module     Subject        Score    Max    Due Date      Type   Remarks")
+        print("==========================================================================")
+
+        for module, values in self.modules_dict.items() :
+
+            subject= values[0]
+            score= values[1]
+            max_score= values[2]
+            due_date= values[3]
+            ass_type= values[4]
+
+            percentage= (score / max_score )* 100
+
+            if percentage >= 70 :
+                remarks = "Excellent"
+            elif percentage >= 50 :
+                remarks = "Excellent"
+            else:
+                remarks = "POOR"
+                pass
+                #TO ADD NOTESSS
+            print(
+                f"{module:<10} " # :> right aligns the results with the available space
+                f"{subject:<12} "
+                f"{score:<8} "
+                f"{max_score:<6} "
+                f"{due_date:<13} "
+                f"{ass_type:<8} "
+                f"{remarks}"
+            )
+        print("==========================================================================")
+            
+
+
+
+
+    def add_to_existing(self):
+        pass
+user1=Assignment()
+user1.show_modules()
+
+
+
+
+
+
 
  
              
