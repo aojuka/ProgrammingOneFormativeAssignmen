@@ -1,19 +1,30 @@
 # One small code for  All one giant leep for mankind
 import datetime as dt
+
+
+
 class Student_information:                                        #parent class to bare the student information,id ,and cohorty name..be sure to create a display dashboard
     
      def __init__(self):
-          
-          self.__name=input("Enter your name: ")            
-                                                                           
-          if self.__name.isalpha():                                       #Just as simple error handling to mosdifiy before assignment deadline--# Apply Encampsulation to prevent accidental modification of student name once set 
-               print( f"Welcome {self.__name} This is  your student tracker") 
-          elif self.__name.isnumeric(): 
-               print("Invalid input please try again")
+         
+         while True:
+            name = input("Enter your name: ").strip()
+            if name.isalpha():
+                self.__name = name
+                print(f"Welcome {self.__name}, this is your student tracker")
+                break
+            print("Invalid input — name must contain letters only. Please try again.")
 
-          self.id=int(input(f" Nice {self.__name}, Please now enter your student ID: "))
-                    
-          self.cohort=input(f"{self.__name}, Now Please enter your current cohort ")
+         while True:
+            id_input = input(f"Nice {self.__name}, please now enter your student ID: ").strip()
+            if id_input.isdigit():
+                self.id = int(id_input)
+                break
+            print("Invalid ID — please enter numbers only.")
+
+         self.cohort = input(f"{self.__name}, please enter your current cohort: ").strip()
+          
+          
 
      # Keep Dreaming big  Allan  
 
@@ -43,101 +54,60 @@ class Student_information:                                        #parent class 
 
          
 
-class Assignment(Student_information):
-    def __init__(self):
-        #super().__init__()
-        modules_dict={}
-        
-        while True:
-            
-            module_input= input(
-               f"{user1.get_name()} please enter Module, Subject, Score, Max Score, duedate\n"
-               "Example: Math,Mathematics,75,80,\n"
-               "or type 'done' to finish: "
-            )
-        
-            if module_input.lower() == "done":
-               break
+class Assignment: # Base class for grade item that my user will put
 
-            module_List= module_input.split(",")
-            try:
-               module_name= module_List[0]
-               Subject_title= module_List[1]
-               score= int(module_List[2])
-               max_score= int(module_List[3])
-               due_date= dt.date.fromisoformat(module_List[4]) 
-               assignment_type= None
-            except:
-               print("Opps you did not follow my instructions\n" \
-               "Please ensure data was separated by a ',' only "
-               "Example: Math,Mathematics,75,80\n")
-               continue
+    def __init__(self,subject,title,score,max_score,due_date,assignmet_type):
 
-            #Data cleaning and validation of User Input
-            pass
-            pass 
-            pass
-            pass
+        self.subject= subject.lower().strip()     
+        self.title= title.upper().strip()
+        self.score = float(score)
+        self.max_score= float(max_score)
+        self.due_date= due_date
+        self.type = assignmet_type 
 
-            modules_dict[module_name]=[
-               Subject_title,
-               score,
-               max_score,
-               due_date,
-               assignment_type
-            ]
-        self.modules_dict= modules_dict
+    def percent(self):
+        return (self.score / self.max_score) * 100
 
-    def show_modules(self):
+    def remarks(self):
+        percentage=self.percent()
+        if percentage > 80 :
+            return " A PLAIN"
+        elif percentage >= 75 :
+            return " A- minus"
+        elif percentage >= 70 :
+            return " B+ plus"
+        elif percentage >= 60 :
+            return " B PLAIN"
+        elif percentage >= 50 :
+            return " B- minus"
+        else:
+            return " 🤦‍♂️☠️☠️☠️"
 
-        print("=" * 80)
-        print("Module     Subject        Score    Max    Due Date      Type   Remarks")
-        print("=" * 80)
-
-        for module, values in self.modules_dict.items() :
-
-            subject= values[0]
-            score= values[1]
-            max_score= values[2]
-            due_date= values[3]
-            ass_type= values[4]
-
-            percentage= (score / max_score )* 100
-
-            if percentage >= 70 :
-               remarks = "Excellent"
-            elif percentage >= 50 :
-               remarks = "Excellent"
-            else:
-               remarks = "POOR"
-               pass
-               #TO ADD NOTESSS
-            print(
-               f"{module.upper():<10} " # :> right aligns the results with the available space
-               f"{subject.capitalize():<12} "
-               f"{score:<8} "
-               f"{max_score:<6} "
-               f"{remarks}"
-               f"{due_date:<13} "
-               f"{ass_type:<8} "
-            )
-        print("=" * 80)
-            
+    def __str__(self):                     # Controls what is output when the fuction is called
+        return (
+            f"{self.title: <15} "
+            f"{self.subject: <12} "
+            f"{self.score: <8.1f} "
+            f"{self.max_score: <6.1f} "
+            f"{self.due_date: <15} "
+            f"{self.type: <15} "
+            f"{self.remarks()} "
+        )
 
 
 
 
-    def add_to_existing(self):
-        pass
 
-##def __init__(self):
-          #super().__init__()
-          #self.type = "Homework"
+    
+class HomeWork(Assignment):  # to be a sub class of assignment ,hence to inherit from assignment
 
-          #due_date_input = input("Enter Due Date -1856-07-10 :")
-          ##self.due_date = due_date
+        def __init__(self, subject, title, score, max_score, due_date, assignmet_type):
+            super().__init__(subject, title, score, max_score, due_date, assignmet_type="homework") # To always default to homework
 
-#user1 = Homework()
+class Exam(Assignment):
+
+        def __init__(self, subject, title, score, max_score, due_date, assignmet_type):
+             super().__init__(subject, title, score, max_score, due_date, assignmet_type="Exam")
 
 
 

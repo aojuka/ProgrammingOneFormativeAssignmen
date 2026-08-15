@@ -1,28 +1,69 @@
-import datetime as dt
+class Assignment: # Base class for grade item that my user will put
 
-#due_date_input = input("Enter Due Date -1856-07-10 :")
+    def __init__(self,subject,title,score,max_score,due_date,assignmet_type):
 
-sample_due_dates = [
-    "1856-07-10",
-    "2026-08-15",
-    "1856-07-10",
-    "2026-12-31",
-    "1900-01-01",
-    "2030-05-20"
-]
-#due_date= dt.date.fromisoformat(due_date_input)
-refined=[]
-for i in sample_due_dates:
-    due_date_list= dt.date.fromisoformat(i)
-    refined.append(due_date_list)
+        self.subject= subject.lower().strip()     
+        self.title= title.upper().strip()
+        self.score = float(score)
+        self.max_score= float(max_score)
+        self.due_date= due_date
+        self.type = assignmet_type 
 
-print(refined)
+    def percent(self):
+        return (self.score / self.max_score) * 100
 
-sortedd=list(filter(lambda p: p.month >= 7,refined)).sort()
+    def remarks(self):
+        percentage=self.percent()
+        if percentage > 80 :
+            return " A PLAIN"
+        elif percentage >= 75 :
+            return " A- minus"
+        elif percentage >= 70 :
+            return " B+ plus"
+        elif percentage >= 60 :
+            return " B PLAIN"
+        elif percentage >= 50 :
+            return " B- minus"
+        else:
+            return " 🤦‍♂️☠️☠️☠️"
 
-filtered_dates = list(filter(lambda p: p.month >= 7, refined))
+    def __str__(self):                     # Controls what is output when the fuction is called
+        return (
+            f"{self.title: <15} "
+            f"{self.subject: <12} "
+            f"{self.score: <8.1f} "
+            f"{self.max_score: <6.1f} "
+            f"{self.due_date: <15} "
+            f"{self.type: <15} "
+            f"{self.remarks()} "
+        )
 
-# Sorts directly on the existing list
-filtered_dates.sort() 
 
-print(filtered_dates)
+
+
+
+    
+class HomeWork(Assignment):  # to be a sub class of assignment ,hence to inherit from assignment
+
+        def __init__(self, subject, title, score, max_score, due_date, assignmet_type):
+            super().__init__(subject, title, score, max_score, due_date, assignmet_type="homework") # To always default to homework
+
+class Exam(Assignment):
+
+        def __init__(self, subject, title, score, max_score, due_date, assignmet_type):
+             super().__init__(subject, title, score, max_score, due_date, assignmet_type="Exam")
+
+
+
+
+
+                       
+
+                
+
+
+
+  
+
+                
+        pass
