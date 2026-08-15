@@ -98,7 +98,7 @@ class Assignment: # Base class for grade item that my user will put
 
 
 
-    
+        # Sub classes of Assignment classs
 class HomeWork(Assignment):  # to be a sub class of assignment ,hence to inherit from assignment
 
         def __init__(self, subject, title, score, max_score, due_date, assignmet_type):
@@ -108,64 +108,9 @@ class Exam(Assignment):
 
         def __init__(self, subject, title, score, max_score, due_date, assignmet_type):
              super().__init__(subject, title, score, max_score, due_date, assignmet_type="Exam")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    #pass
-
-
-class Exams(Assignment):
-    pass
-
-class GradeTracker:
-    pass
-
-   
         
+
+
+class Gradetraker:
+
+     def  
