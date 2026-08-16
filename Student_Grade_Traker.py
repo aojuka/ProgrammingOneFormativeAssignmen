@@ -1,7 +1,7 @@
-# One small code for  All one giant leep for mankind
+
 import datetime as dt
 
-class Student_information:                                       #parent class to bare the student information,id ,and cohorty name..be sure to create a display dashboard
+class Student_information:      #parent class to bare the student information,id ,and cohorty name..be sure to create a display dashboard
     
      def __init__(self):
          
@@ -13,7 +13,7 @@ class Student_information:                                       #parent class t
                print(f"Welcome {self.__name}, this is your student tracker")
                break
             else:
-               print("Invalid input — name must contain letters only. Please try again.")
+               print("Invalid input — name must contain letters only. Please try again.\n")
 
          while True:
             id_input = input(f"Nice {self.__name}, please now enter your student ID: ").strip()
@@ -104,11 +104,15 @@ class Exam(Assignment):
 
 
 class Gradetraker:
+# Creates a tracker for one student and starts with an empty assignment list.
 
      def __init__(self,student):
           self.student= student
           self.modules=[]  # dictonary to capture assingments ----modifided to list
 
+
+
+# Collects, validates, checks for duplicates, and stores a new homework or exam.
      def add_assignments(self,assignment_type):
 
           modules_input= input(
@@ -125,8 +129,9 @@ class Gradetraker:
                print(
                     "PLEASE-GIVE EXACTLY 5 VALUES ,SEPARRATED BY A COMMA.\n" \
                "Example: Mathematics,Algebra HW1,75,80,2026-08-15\n"
-               "or type 'done' to finish"
+               "or type 'done' to finish\n \n"
                )
+               return False
 
           module_name, Subject_title, score_string, max_score_str,due_date_str = [p.strip() for p in modules_list]    # List comprehence applied to clean user input and remove white space
 
@@ -169,7 +174,7 @@ class Gradetraker:
           print(f"{module_name} has succefully been added !!!!")
           return True            #to succeffully output add assignment without the none- like so that the functun es not return none
      
-
+# Displays all assignments, or a supplied filtered list, in a table.
      def list_assignment(self, assingmnents=None):
 
           if assingmnents is None:
@@ -187,8 +192,8 @@ class Gradetraker:
                print(i)
           print("=" * 90)
 
-
-     def filter_assignments(self,by ,value):
+# Filters stored assignments by the selected category and displays the results.
+     def filter_assignments(self,by ,value):               
           result=[]
 
           if by == "type":               
@@ -199,13 +204,19 @@ class Gradetraker:
                for a in self.modules:
                     if a.subject == value.lower().strip():
                          result.append(a)
+          elif by == "month":
+               for a in self.modules:
+                   if a.due_date.strftime("%Y-%m") == value.strip():
+                         result.append(a)          
           else:
                print("Unknow filter type.\n")
                return []
           self.list_assignment(result)
 
           return result
-     def show_summary(self):
+
+     
+     def show_summary(self):              # Calculates and displays the overall average, subject averages, highest, and lowest assignment
 
           if not self.modules:
                print("No assignments recorded yet — nothing to summarize.\n")

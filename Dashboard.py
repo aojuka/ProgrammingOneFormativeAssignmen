@@ -6,7 +6,7 @@ def stater():
         user_choice=input(
             "To proceed tracking your assignments, type Yes\n"
             "Let's first take some important information from you\n"
-            "(use 'exit' to end the program): "
+            "(use 'exit' to end the program\n): "
         ).strip().lower()
 
         if user_choice in ("yes","exit"):
