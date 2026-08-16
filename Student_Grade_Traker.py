@@ -6,19 +6,20 @@ class Student_information:                                       #parent class t
      def __init__(self):
          
          while True:
+            
             name = input("Enter your name: ").strip()
-            if name.isalnum or name.isdigit or name.startswith("_"):
-                self.__name = name
-                print(f"Welcome {self.__name}, this is your student tracker")
-                break
+            if name.replace(" ","").isalpha():             
+               self.__name = name
+               print(f"Welcome {self.__name}, this is your student tracker")
+               break
             else:
                print("Invalid input — name must contain letters only. Please try again.")
 
          while True:
             id_input = input(f"Nice {self.__name}, please now enter your student ID: ").strip()
             if id_input.isdigit():
-                self.id = int(id_input)
-                break
+               self.id = int(id_input)
+               break
             else:
                print("Invalid ID — please enter numbers only.")
 
@@ -161,7 +162,7 @@ class Gradetraker:
                     and existing_module.due_date == new_module.due_date
                     and existing_module.type.lower() == new_module.type.lower()
                ):
-                    print("🤦‍♂️This assignment already exists.")
+                    print("🤦‍♂️This assignment already exists........")
                     return False
 
           self.modules.append(new_module)
