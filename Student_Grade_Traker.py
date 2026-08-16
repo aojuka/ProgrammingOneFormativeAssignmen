@@ -1,29 +1,28 @@
 # One small code for  All one giant leep for mankind
 import datetime as dt
 
-
-
-class Student_information:                                        #parent class to bare the student information,id ,and cohorty name..be sure to create a display dashboard
+class Student_information:                                       #parent class to bare the student information,id ,and cohorty name..be sure to create a display dashboard
     
      def __init__(self):
          
          while True:
             name = input("Enter your name: ").strip()
-            if name.isalpha():
+            if name.isalnum or name.isdigit or name.startswith("_"):
                 self.__name = name
                 print(f"Welcome {self.__name}, this is your student tracker")
                 break
-            print("Invalid input — name must contain letters only. Please try again.")
+            else:
+               print("Invalid input — name must contain letters only. Please try again.")
 
          while True:
             id_input = input(f"Nice {self.__name}, please now enter your student ID: ").strip()
             if id_input.isdigit():
                 self.id = int(id_input)
                 break
-            print("Invalid ID — please enter numbers only.")
+            else:
+               print("Invalid ID — please enter numbers only.")
 
-         self.cohort = input(f"{self.__name}, please enter your current cohort: ").strip()
-          
+         self.cohort = input(f"{self.__name}, please enter your current cohort: ").strip()         
           
 
      # Keep Dreaming big  Allan  
@@ -49,9 +48,6 @@ class Student_information:                                        #parent class 
           print(f"Cohort     : {self.cohort}")
 
           print("═" * 80)
-
-
-
          
 
 class Assignment: # Base class for grade item that my user will put
@@ -81,22 +77,18 @@ class Assignment: # Base class for grade item that my user will put
         elif percentage >= 50 :
             return " B- minus"
         else:
-            return " 🤦‍♂️☠️☠️☠️"
+            return "🤦‍♂️☠️☠️☠️"
 
     def __str__(self):                     # Controls what is output when the fuction is called
         return (
-            f"{self.title: <15} "
-            f"{self.subject: <12} "
-            f"{self.score: <8.1f} "
-            f"{self.max_score: <6.1f} "
-            f"{self.due_date: <15} "
-            f"{self.type: <15} "
+            f"{self.title :<15} "
+            f"{self.subject :<12} "
+            f"{self.score :<8.1f} "
+            f"{self.max_score :<6.1f} "
+            f"{str(self.due_date) :<15} "
+            f"{self.type :<15} "
             f"{self.remarks()} "
         )
-
-
-
-
 
         # Sub classes of Assignment classs
 class HomeWork(Assignment):  # to be a sub class of assignment ,hence to inherit from assignment
@@ -107,8 +99,7 @@ class HomeWork(Assignment):  # to be a sub class of assignment ,hence to inherit
 class Exam(Assignment):
 
         def __init__(self, subject, title, score, max_score, due_date):
-             super().__init__(subject, title, score, max_score, due_date, assignment_type="Exam")
-        
+             super().__init__(subject, title, score, max_score, due_date, assignment_type="Exam")     
 
 
 class Gradetraker:
@@ -125,7 +116,7 @@ class Gradetraker:
                "or type 'done' to finish: "
                )
           if modules_input.lower() == "done":
-               return False
+               return False          
 
           modules_list= modules_input.split(",")
 
@@ -163,8 +154,18 @@ class Gradetraker:
           else:
                new_module= Exam(module_name, Subject_title, score_string, max_score_str,due_date_str)
 
+          for existing_module in self.modules:
+               if (
+                    existing_module.subject == new_module.subject
+                    and existing_module.title == new_module.title
+                    and existing_module.due_date == new_module.due_date
+                    and existing_module.type.lower() == new_module.type.lower()
+               ):
+                    print("🤦‍♂️This assignment already exists.")
+                    return False
+
           self.modules.append(new_module)
-          print(f"{module_name} has succefully been add !!!!")
+          print(f"{module_name} has succefully been added !!!!")
           return True            #to succeffully output add assignment without the none- like so that the functun es not return none
      
 
