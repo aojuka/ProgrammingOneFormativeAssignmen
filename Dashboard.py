@@ -87,6 +87,10 @@ def main_file_runner():
         else:
             run_my_program()
 
-main_file_runner()
+if __name__ == "__main__" :
+    main_file_runner()
+
+ 
+
 
     
