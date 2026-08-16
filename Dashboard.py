@@ -1,61 +1,92 @@
 import Student_Grade_Traker as st
-while True:
-    print("~." * 40)
-    print("welcome to My Bevelovent assignment tracker")
-    print("~." * 40 +"\n" * 2)
 
+def stater():
 
-    User_creation=input("To proceed tracking you assignment,Type Yes" \
-        "\n Let's First take some important information from you " \
-        " \n (use-Exit to end the program): "
-    )
+    while True:
+        user_choice=input(
+            "To proceed tracking your assignments, type Yes\n"
+            "Let's first take some important information from you\n"
+            "(use 'exit' to end the program): "
+        ).strip().lower()
 
+        if user_choice in ("yes","exit"):
+            return user_choice
+        else:
+            print("Huh! Not the output I expected, but let's give it another try.\n")
 
-    if User_creation.strip().lower() == "yes":
-        #from Student_Grade_Traker import Student_information
-        user1=st.Student_information()
-
-    elif User_creation.strip().lower() == "exit":
-        print("Sorry we were never Ment to be, All the best mon pote")
-        break
-    else:
-        print("Huhh! Not the output I expect bet lets give it another try")
-        continue
-        
-    
-    
-    Menu=[ ''
-        "1) Add homework" ,
+def show_menu():
+    menu = [
+        "1) Add homework",
         "2) Add exam",
-        "3) List assignments ",
-        "4) Filter (by subject / type / month) ",
-        "5) Show summary" ,
-        "0) Exit ",
-        "6)Change Name"         #set fuction
+        "3) List assignments",
+        "4) Filter (by subject / type / month)",
+        "5) Show summary",
+        "6) Change name",
+        "0) Exit",
     ]
+    for line in menu:
+        print(line)
 
-    user1.display_student()
+def filterer(tracker):
 
-    for i in Menu:
-        
-        print(i)
+    print("Filter by: 1) Type  2) Subject  3) Month")
+    sub_choice = input("Choose an option: ").strip()
 
-    Menu_option=input("Choose your Menu option: ")
+    if sub_choice == "1":
+        value = input("Enter type (homework/exam): ")
+        tracker.filter_assignments("type", value)
+    elif sub_choice == "2":
+        value = input("Enter subject: ")
+        tracker.filter_assignments("subject", value)
+    elif sub_choice == "3":
+        value = input("Enter month (YYYY-MM): ")
+        tracker.filter_assignments("month", value)
+    else:
+        print("Invalid filter option.")
 
-    match Menu_option :
-        case "1" :
-            Add_assignment_obj= st.Assignment()
-        case "2" :
-            Add_assignment_obj= st.Assignment()
-        case "3" :
-            Add_assignment_obj.show_modules()
-        case "4" :
-            pass
-        case "5" :
-            pass
-        case "6" :
-            pass
-        case "0":
-            pass
+def run_my_program():
+
+    print("~." * 40)
+    print("Welcome to My Bevelovent Assignment Tracker")
+    print("~." * 40 + "\n")
+
+    user = st.Student_information()
+    tracker = st.Gradetraker(user)
+
+    while True:
+        user.display_student()
+        show_menu()
+        option = input("Choose your Menu option: ").strip()
+
+        if option == "1":
+            tracker.add_assignments("homework")
+        elif option == "2":
+            tracker.add_assignments("exam")
+        elif option == "3":
+            tracker.list_assignment()
+        elif option == "4":
+            filterer(tracker)
+        elif option == "5":
+            tracker.show_summary()
+        elif option == "6":
+            new_name = input("Enter your new name: ")
+            user.set_name(new_name)
+        elif option == "0":
+            print("Session ended. All the best, mon pote!")
+            break
+        else:
+            print("Invalid menu option — please choose a number from the list.\n")
+
+def main_file_runner():
+
+    while True:
+        start =stater()
+        if start == "exit" :
+            print("Sorry we were never meant to be, all the best mon pote")
+            exit()
+        else:
+            run_my_program()
+
+main_file_runner()
 
     
