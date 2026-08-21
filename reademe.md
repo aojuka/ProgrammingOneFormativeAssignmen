@@ -1,8 +1,9 @@
 # Student Grade / Assignment Tracker
 
 ## Project Overview
-This is a command-line Python program for tracking student homework and exam results during one session.  
-The program lets a student enter their details, add assignments, list them, filter them, and view a grade summary.
+This is my Programming 1 formative project. I created a command-line Student Grade Tracker using Python.
+
+The program allows a student to add homework and exam results, see all the assignments they have entered, filter them, and view a summary of their grades. The data is only kept while the program is running.
 
 ## Features
 1. Add homework and exam results
@@ -58,6 +59,52 @@ Choose your Menu option: 3
 Title           Subject      Score    Max    Due Date      Type       Remarks
 ALGEBRA HW1     math         75.0     80.0   2026-08-15    homework   A PLAIN
 ```
+### Adding homework
+
+```text
+Choose your Menu option: 1
+
+Enter Module, Subject, Score, Max Score, duedate:
+Math,Algebra HW1,75,80,2026-08-15
+
+Math has successfully been added!
+```
+
+### Listing assignments
+
+```text
+Title           Subject      Score    Max    Due Date       Type
+ALGEBRA HW1     math         75.0     80.0   2026-08-15     homework
+```
+
+### Filtering
+
+```text
+Filter by: 1) Type  2) Subject  3) Month
+Choose an option: 2
+Enter subject: math
+```
+
+### Grade summary
+
+```text
+GRADE SUMMARY
+
+Overall Average      : 93.75%
+
+Per-Subject Averages:
+Math                 : 93.75%
+
+Highest Scoring      : ALGEBRA HW1 (93.75%)
+Lowest Scoring       : ALGEBRA HW1 (93.75%)
+```
+
+## Files
+
+- `Dashboard.py` - runs the menu and controls the program
+- `Student_Grade_Traker.py` - contains the classes and the main grade tracker functions
+- `README.md` - information about the project
+
 
 ## Notes
 All assignment data is stored only while the program is running. No files or databases are used to save the data.

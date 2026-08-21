@@ -82,7 +82,7 @@ class Assignment: # Base class for grade item that my user will put
 
     def __str__(self):                     # Controls what is output when the fuction is called
         return (
-            f"{self.title :<15} "
+            f"{self.title :<30} "
             f"{self.subject :<12} "
             f"{self.score :<8.1f} "
             f"{self.max_score :<6.1f} "
